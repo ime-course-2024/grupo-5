@@ -22,13 +22,10 @@ Uma vez acordado entre os membros do grupos, este devem adicionar ao final deste
 Cada demanda identificada pelos membros do grupos para a solução do problema deve ser documentada através de uma **tarefa** representada como uma `issue` ([exemplo](https://github.com/ime-course-2024/grupo-1/issues/1)).
 
 ## Desenvolvimento da Atividade 
+
 Esse grupo tem como tema aplicações de Comando e Controle, no contexto militar.
 A modelagem deve incluir a descrição de um problema militar a ser solucionado através da execução de uma operação.
-<<<<<<< Updated upstream
+
 Nesse contexto, é preciso desenvolver uma aplicação que possibilite controlar/acompanhar a execução da operação, que tenha como base a representação uniforme dos elementos envolvidos na operação: plataformas e unidades militares.
-Blabla
-=======
-Nesse contexto, é preciso desenvolver uma aplicação que possibilite controlar/acompanhar a execução da operação, que tenha como base a representação uniforme dos elementos envolvidos na operação: 
-plataformas, unidades militares, 
-Bla bla
->>>>>>> Stashed changes
+
+
