@@ -7,7 +7,7 @@ Este repositório contém as atividades desenvolvidas pelo Grupo 5 do curso Enge
 - (Yoko)
 - Leandro
 - Andre
-- Valquirie
+- Valquire
 
 ## Descrição da Atividade
 
