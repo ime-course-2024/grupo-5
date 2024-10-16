@@ -24,5 +24,11 @@ Cada demanda identificada pelos membros do grupos para a solução do problema d
 ## Desenvolvimento da Atividade 
 Esse grupo tem como tema aplicações de Comando e Controle, no contexto militar.
 A modelagem deve incluir a descrição de um problema militar a ser solucionado através da execução de uma operação.
+<<<<<<< Updated upstream
 Nesse contexto, é preciso desenvolver uma aplicação que possibilite controlar/acompanhar a execução da operação, que tenha como base a representação uniforme dos elementos envolvidos na operação: plataformas e unidades militares.
 Blabla
+=======
+Nesse contexto, é preciso desenvolver uma aplicação que possibilite controlar/acompanhar a execução da operação, que tenha como base a representação uniforme dos elementos envolvidos na operação: 
+plataformas, unidades militares, 
+Bla bla
+>>>>>>> Stashed changes
