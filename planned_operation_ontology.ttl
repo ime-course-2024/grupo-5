@@ -1,0 +1,199 @@
+@prefix : <http://example.com#>.
+@prefix gufo: <http://purl.org/nemo/gufo#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<http://example.com> rdf:type owl:Ontology;
+    owl:imports gufo:.
+:CmdAndStaff rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "CmdAndStaff"@en.
+:MilitaryOrganization rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "MilitaryOrganization"@en.
+:Platform rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Platform"@en.
+:LandPlatform rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "LandPlatform"@en.
+:AerialPlatform rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "AerialPlatform"@en.
+:SurfacePlatform rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "SurfacePlatform"@en.
+:SubsurfacePlatform rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "SubsurfacePlatform"@en.
+:Objective rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "Objective"@en.
+:AvgSpeed rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "AvgSpeed"@en.
+:Unit rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Unit"@en.
+:PlannedAction rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Planned Action"@en.
+:PlannedOperation rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Planned Operation"@en.
+:Assigment rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Assigment"@en.
+:Location rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Location"@en.
+:Allocation rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Allocation"@en.
+:InitialLocation rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Initial Location"@en.
+:ReportDelegation rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "ReportDelegation"@en.
+:ReportAgent rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ReportAgent"@en.
+:AutonomousAgent rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "Autonomous Agent"@en.
+:Agent rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Agent"@en.
+:SurfacePlatform rdfs:subClassOf :Platform.
+:AerialPlatform rdfs:subClassOf :Platform.
+:LandPlatform rdfs:subClassOf :Platform.
+:SubsurfacePlatform rdfs:subClassOf :Platform.
+:CmdAndStaff rdfs:subClassOf :MilitaryOrganization.
+:Unit rdfs:subClassOf :MilitaryOrganization.
+:ReportAgent rdfs:subClassOf :Agent.
+:AutonomousAgent rdfs:subClassOf :Agent.
+:Unit rdfs:subClassOf :Agent.
+[ rdf:type owl:AllDisjointClasses ] owl:members (:SurfacePlatform :LandPlatform :SubsurfacePlatform :AerialPlatform).
+[ rdf:type owl:AllDisjointClasses ] owl:members (:Unit :CmdAndStaff).
+:Command rdf:type owl:ObjectProperty;
+    rdfs:domain :CmdAndStaff;
+    rdfs:range :Unit;
+    rdfs:label "Command"@en;
+    rdf:type gufo:MaterialRelationshipType.
+:plan rdf:type owl:ObjectProperty;
+    rdfs:domain :PlannedAction;
+    rdfs:range :CmdAndStaff;
+    rdfs:label "plan"@en;
+    rdf:type gufo:MaterialRelationshipType.
+:execute rdf:type owl:ObjectProperty;
+    rdfs:domain :PlannedAction;
+    rdfs:range :Unit;
+    rdfs:label "execute"@en;
+    rdf:type gufo:MaterialRelationshipType.
+:reportDelegationHasPlatform rdf:type owl:ObjectProperty;
+    rdfs:domain :ReportDelegation;
+    rdfs:range :Platform.
+:reportAgentHasReportDelegation rdf:type owl:ObjectProperty;
+    rdfs:domain :ReportAgent;
+    rdfs:range :ReportDelegation.
+:CmdAndStaff rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Assigment
+].
+:Unit rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Assigment
+].
+:PlannedAction rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Assigment
+].
+:Location rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Latitude
+].
+:Latitude rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Location
+].
+:Location rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Longitude
+].
+:Longitude rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Location
+].
+:PlannedAction rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Objective
+].
+:AvgSpeed rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Platform
+].
+:Platform rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :AvgSpeed
+].
+:Allocation rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Platform
+], [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Unit
+], [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:mediates;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :PlannedAction
+].
+:Unit rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :ReportDelegation
+].
+:Location rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass xsd:dateTime
+].
+xsd:dateTime rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Location
+].
+:Platform rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty [ owl:inverseOf gufo:inheresIn ];
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :InitialLocation
+].
+:InitialLocation rdfs:subClassOf [
+  rdf:type owl:Restriction;
+  owl:onProperty gufo:inheresIn;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger;
+  owl:onClass :Platform
+].
